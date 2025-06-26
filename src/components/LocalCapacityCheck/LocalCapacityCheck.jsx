@@ -38,7 +38,7 @@ const LocalCapacityCheck = () => {
     const py = calculatePy(Number(grade), Number(Tflange));
     const Mcx = calculateMcx(py, Number(Sx), Number(Zx), sectionClass);
     const Mcy = calculateMcy(py, Number(Sy), Number(Zy), sectionClass);
-    const capacity = (Fc * 10 / (py * A)) + (Mx / Mcx) + (My / Mcy);
+    const capacity = (Fc * 10 / (py * A)) + (Mx / Mcx) + (My / Mcy); // Cross-section capacity BS5950:2000 Clause 4.8.3.2
 
     setCapacityResults({
       py,

@@ -6,6 +6,9 @@ export const DesignProvider = ({ children }) => {
   const [selectedSection, setSelectedSection] = useState(null);
   const [classificationResults, setClassificationResults] = useState(null);
   const [capacityResults, setCapacityResults] = useState(null);
+  const [bucklingResults, setBucklingResults] = useState(null);
+  const [pcLookupResult, setPcLookupResult] = useState(null);
+  const [PbLookupResult, setPbLookupResult] = useState(null);
 
   return (
     <DesignContext.Provider
@@ -18,6 +21,12 @@ export const DesignProvider = ({ children }) => {
         setClassificationResults,
         capacityResults,
         setCapacityResults,
+        bucklingResults, 
+        setBucklingResults,
+        pcLookupResult,
+        setPcLookupResult,
+        PbLookupResult,
+        setPbLookupResult
       }}
     >
       {children}
