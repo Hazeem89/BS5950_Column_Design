@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import { useDesign } from '../../context/DesignContext';
+import React, { useEffect } from "react";
+import { useDesign } from "../../context/DesignContext";
 import {
   calculateSlendernessRatio,
   calculateEffectiveLength,
   calculatePy,
   calculateCompressionResistance,
   calculateBucklingResistanceMoment,
-  calculateEquivalentSlenderness
-} from '../../utils/calculations';
+  calculateEquivalentSlenderness,
+} from "../../utils/calculations";
 
 const OverallBucklingCheck = () => {
   const {
@@ -17,32 +17,30 @@ const OverallBucklingCheck = () => {
     bucklingResults,
     setBucklingResults,
     lookupPc,
-    lookupPb
+    lookupPb,
   } = useDesign();
 
   useEffect(() => {
     if (
       !selectedSection ||
-      !Fc || isNaN(Number(Fc)) ||
-      !Mx || isNaN(Number(Mx)) ||
-      !My || isNaN(Number(My)) ||
-      !L || isNaN(Number(L)) ||
-      !grade || isNaN(Number(grade))
+      !Fc ||
+      isNaN(Number(Fc)) ||
+      !Mx ||
+      isNaN(Number(Mx)) ||
+      !My ||
+      isNaN(Number(My)) ||
+      !L ||
+      isNaN(Number(L)) ||
+      !grade ||
+      isNaN(Number(grade))
     ) {
       setBucklingResults(null);
       return;
     }
 
-    const {
-      Tflange,
-      A,
-      ry,
-      Sx,
-      Zx,
-      Zy,
-    } = selectedSection;
+    const { Tflange, A, ry, Sx, Zx, Zy } = selectedSection;
 
-    const sectionClass = classificationResults?.flangeClass || 'Plastic';
+    const sectionClass = classificationResults?.flangeClass || "Plastic";
 
     const py = calculatePy(Number(grade), Number(Tflange));
     const LE = calculateEffectiveLength(Number(L));
@@ -56,7 +54,6 @@ const OverallBucklingCheck = () => {
     console.log("lookupPc result:", pc);
     console.log("lookupPb result:", Pb);
 
-
     // Ensure lookups returned valid values
     if (pc === null || Pb === null) {
       setBucklingResults(null);
@@ -64,9 +61,15 @@ const OverallBucklingCheck = () => {
     }
 
     const Pc = calculateCompressionResistance(sectionClass, pc, Number(A));
-    const Mbs = calculateBucklingResistanceMoment(sectionClass, Pb, Number(Sx), Number(Zx));
+    const Mbs = calculateBucklingResistanceMoment(
+      sectionClass,
+      Pb,
+      Number(Sx),
+      Number(Zx)
+    );
 
-    const OverallBucklingCheck = (Number(Fc) / Pc) + (Number(Mx) / Mbs) + (Number(My) * 1000 / (py * Zy));
+    const OverallBucklingCheck =
+      Number(Fc) / Pc + Number(Mx) / Mbs + (Number(My) * 1000) / (py * Zy);
 
     setBucklingResults({
       py,
@@ -77,26 +80,95 @@ const OverallBucklingCheck = () => {
       Mbs,
       OverallBucklingCheck,
     });
-
-  }, [selectedSection, Fc, grade, Mx, My, L, classificationResults, lookupPc, lookupPb, setBucklingResults]);
+  }, [
+    selectedSection,
+    Fc,
+    grade,
+    Mx,
+    My,
+    L,
+    classificationResults,
+    lookupPc,
+    lookupPb,
+    setBucklingResults,
+  ]);
 
   return (
-    <div className="bg-white p-4 rounded shadow">
-      <h2 className="text-lg font-semibold mb-4">Overall Buckling Check Results</h2>
+    <fieldset className="p-6 max-w-6xl mx-auto border border-gray-200 rounded-lg mb-6 shadow-sm">
+      <legend className="text-2xl font-semibold text-gray-800 mb-4">
+        Overall Buckling Check Results
+      </legend>
       {bucklingResults ? (
-        <div>
-          <p><strong>Design Strength (py):</strong> {bucklingResults.py.toFixed(2)} MPa</p>
-          <p><strong>Effective Length (LE):</strong> {bucklingResults.LE.toFixed(2)} m</p>
-          <p><strong>Slenderness Ratio (λ):</strong> {bucklingResults.λ.toFixed(2)}</p>
-          <p><strong>Compression Resistance (Pc):</strong> {bucklingResults.Pc.toFixed(2)}</p>
-          <p><strong>Equivalent Slenderness (λLT):</strong> {bucklingResults.λLT.toFixed(2)}</p>
-          <p><strong>Buckling Resistance Moment (Mbs):</strong> {bucklingResults.Mbs.toFixed(2)} kNm</p>
-          <p><strong>Overall Buckling Check:</strong> {bucklingResults.OverallBucklingCheck.toFixed(2)}</p>
+        <div className="space-y-4 text-gray-700">
+          <p className="flex justify-between">
+            <span className="text-sm font-medium text-gray-700">
+              Design Strength (py):
+            </span>
+            <span>{bucklingResults.py.toFixed(2)} MPa</span>
+          </p>
+          <p className="flex justify-between">
+            <span className="text-sm font-medium text-gray-700">
+              Effective Length (LE):
+            </span>
+            <span>{bucklingResults.LE.toFixed(2)} m</span>
+          </p>
+          <p className="flex justify-between">
+            <span className="text-sm font-medium text-gray-700">
+              Slenderness Ratio (λ):
+            </span>
+            <span>{bucklingResults.λ.toFixed(2)}</span>
+          </p>
+          <p className="flex justify-between">
+            <span className="text-sm font-medium text-gray-700">
+              Compression Resistance (Pc):
+            </span>
+            <span>{bucklingResults.Pc.toFixed(2)}</span>
+          </p>
+          <p className="flex justify-between">
+            <span className="text-sm font-medium text-gray-700">
+              Equivalent Slenderness (λLT):
+            </span>
+            <span>{bucklingResults.λLT.toFixed(2)}</span>
+          </p>
+          <p className="flex justify-between">
+            <span className="text-sm font-medium text-gray-700">
+              Buckling Resistance Moment (Mbs):
+            </span>
+            <span>{bucklingResults.Mbs.toFixed(2)} kNm</span>
+          </p>
+          <p className="flex justify-between">
+            <span className="text-sm font-medium text-gray-700">
+              Overall Buckling Check:
+            </span>
+            <span
+              className={`font-medium text-sm ${
+                bucklingResults.OverallBucklingCheck <= 1
+                  ? "text-green-600"
+                  : "text-red-600"
+              }`}
+            >
+              {bucklingResults.OverallBucklingCheck.toFixed(2)}
+            </span>
+          </p>
+
+          {/* Conditional message */}
+          {bucklingResults.OverallBucklingCheck <= 1 ? (
+            <p className="text-green-600 font-medium">
+              Overall buckling check is acceptable.
+            </p>
+          ) : (
+            <p className="text-red-600 font-medium">
+              Warning: Overall buckling check exceeds 1. Please review your
+              inputs.
+            </p>
+          )}
         </div>
       ) : (
-        <p className="text-red-500">No results available. Please check your inputs or data.</p>
+        <p className="text-red-600 font-medium">
+          No results available. Please check your inputs or data.
+        </p>
       )}
-    </div>
+    </fieldset>
   );
 };
 

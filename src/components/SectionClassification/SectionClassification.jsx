@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDesign } from '../../context/DesignContext';
+import React, { useEffect } from "react";
+import { useDesign } from "../../context/DesignContext";
 import {
   calculatePy,
   calculateEpsilon,
@@ -8,7 +8,7 @@ import {
   calculateR2,
   classifyWeb,
   classifySection,
-} from '../../utils/classification';
+} from "../../utils/classification";
 
 const SectionClassification = () => {
   const {
@@ -22,8 +22,10 @@ const SectionClassification = () => {
     // Validate inputs presence and convert to numbers
     if (
       !selectedSection ||
-      !Fc || isNaN(Number(Fc)) ||
-      !grade || isNaN(Number(grade))
+      !Fc ||
+      isNaN(Number(Fc)) ||
+      !grade ||
+      isNaN(Number(grade))
     ) {
       setClassificationResults(null);
       return;
@@ -36,7 +38,7 @@ const SectionClassification = () => {
       d,
       tWeb,
       A,
-      dt,  // make sure dt exists in your section data
+      dt, // make sure dt exists in your section data
     } = selectedSection;
 
     // Step 1: Calculate design strength py
@@ -57,7 +59,6 @@ const SectionClassification = () => {
 
     // Step 7: Classify section (based on flange and web classification)
     const sectionClass = classifySection(flangeClass, webClass);
-  
 
     // Save results in context
     setClassificationResults({
@@ -72,22 +73,48 @@ const SectionClassification = () => {
   }, [selectedSection, Fc, grade, setClassificationResults]);
 
   return (
-    <div>
-      <h2>Section Classification</h2>
+    <fieldset className="p-6 max-w-6xl mx-auto border border-gray-200 rounded-lg mb-6 shadow-sm">
+      <legend className="text-2xl font-semibold text-gray-800 mb-4">
+        Section Classification
+      </legend>
+
       {classificationResults ? (
-        <ul>
-          <li>Design Strength py: {classificationResults.py.toFixed(2)}</li>
-          <li>Epsilon: {classificationResults.epsilon.toFixed(3)}</li>
-          <li>Flange Classification: {classificationResults.flangeClass}</li>
-          <li>r1: {classificationResults.r1.toFixed(3)}</li>
-          <li>r2: {classificationResults.r2.toFixed(3)}</li>
-          <li>Web Classification: {classificationResults.webClass}</li>
-          <li>Section Classification: {classificationResults.sectionClass}</li>
-        </ul>
+        <div className="space-y-4 text-gray-700">
+          <p className="flex justify-between">
+            <span className="text-sm font-medium text-gray-700">Design Strength (py):</span>
+            <span>{classificationResults.py.toFixed(2)}</span>
+          </p>
+          <p className="flex justify-between">
+            <span className="text-sm font-medium text-gray-700">Epsilon:</span>
+            <span>{classificationResults.epsilon.toFixed(3)}</span>
+          </p>
+          <p className="flex justify-between">
+            <span className="text-sm font-medium text-gray-700">Flange Classification:</span>
+            <span>{classificationResults.flangeClass}</span>
+          </p>
+          <p className="flex justify-between">
+            <span className="text-sm font-medium text-gray-700">r1:</span>
+            <span>{classificationResults.r1.toFixed(3)}</span>
+          </p>
+          <p className="flex justify-between">
+            <span className="text-sm font-medium text-gray-700">r2:</span>
+            <span>{classificationResults.r2.toFixed(3)}</span>
+          </p>
+          <p className="flex justify-between">
+            <span className="text-sm font-medium text-gray-700">Web Classification:</span>
+            <span>{classificationResults.webClass}</span>
+          </p>
+          <p className="flex justify-between">
+            <span className="text-sm font-medium text-gray-700">Section Classification:</span>
+            <span>{classificationResults.sectionClass}</span>
+          </p>
+        </div>
       ) : (
-        <p>Please select a section and enter valid design inputs.</p>
+        <p className="text-red-600 font-medium">
+          Please select a section and enter valid design inputs.
+        </p>
       )}
-    </div>
+    </fieldset>
   );
 };
 

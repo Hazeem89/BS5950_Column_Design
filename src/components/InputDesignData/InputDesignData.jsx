@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { useDesign } from '../../context/DesignContext';
+import React, { useContext } from "react";
+import { useDesign } from "../../context/DesignContext";
 
 const InputDesignData = () => {
   const { designInputs, setDesignInputs } = useDesign();
@@ -10,69 +10,81 @@ const InputDesignData = () => {
   };
 
   return (
-    <div className="p-4 border rounded mb-4">
-      <h2 className="text-xl font-semibold mb-2">Input Design Data</h2>
-      <div className="grid grid-cols-2 gap-4">
-        <label>
-          Axial Force Fc (kN):
+    <fieldset className="p-6 max-w-6xl mx-auto border border-gray-200 rounded-lg mb-6 shadow-sm">
+      <legend className="text-2xl font-semibold text-gray-800 mb-4">
+        Input Design Data
+      </legend>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="flex flex-col">
+          <label className="text-sm font-medium text-gray-700">
+            Axial Force Fc (kN):
+          </label>
           <input
             type="number"
             name="Fc"
             value={designInputs.Fc}
             onChange={handleChange}
-            className="border p-1 w-full"
+            className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-        </label>
+        </div>
 
-        <label>
-          Moment Mx (kNm):
+        <div className="flex flex-col">
+          <label className="text-sm font-medium text-gray-700">
+            Moment Mx (kNm):
+          </label>
           <input
             type="number"
             name="Mx"
             value={designInputs.Mx}
             onChange={handleChange}
-            className="border p-1 w-full"
+            className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-        </label>
+        </div>
 
-        <label>
-          Moment My (kNm):
+        <div className="flex flex-col">
+          <label className="text-sm font-medium text-gray-700">
+            Moment My (kNm):
+          </label>
           <input
             type="number"
             name="My"
             value={designInputs.My}
             onChange={handleChange}
-            className="border p-1 w-full"
+            className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-        </label>
+        </div>
 
-        <label>
-          Length L (m):
+        <div className="flex flex-col">
+          <label className="text-sm font-medium text-gray-700">
+            Length L (m):
+          </label>
           <input
             type="number"
             name="L"
             value={designInputs.L}
             onChange={handleChange}
-            className="border p-1 w-full"
+            className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-        </label>
+        </div>
 
-        <label>
-          Steel Grade:
+        <div className="flex flex-col col-span-2">
+          <label className="text-sm font-medium text-gray-700">
+            Steel Grade:
+          </label>
           <select
             name="grade"
             value={designInputs.grade}
             onChange={handleChange}
-            className="border p-1 w-full"
+            className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">Select grade</option>
             <option value={275}>275</option>
             <option value={355}>355</option>
             <option value={460}>460</option>
           </select>
-        </label>
+        </div>
       </div>
-    </div>
+    </fieldset>
   );
 };
 

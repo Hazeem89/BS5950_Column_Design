@@ -72,28 +72,47 @@ const PbLookup = () => {
   };
 
   return (
-    <div>
-      <h2>Pb Bending Strength Lookup</h2>
-      <label>
-        Equivalent slenderness (lateral-torsional buckling) λLT (lambda):
-        <input
-          type="number"
-          value={lambda}
-          onChange={(e) => setLambda(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        py (design strength):
-        <input
-          type="number"
-          value={py}
-          onChange={(e) => setPy(e.target.value)}
-        />
-      </label>
-      <br />
-      <button onClick={lookup}>Lookup</button>
-      <p>Pb: {Pb ? `${Pb}` : "Enter values to lookup."}</p>
+    <div className="p-6 border border-gray-200 rounded-lg mb-6 shadow-sm">
+      <h3 className="text-l font-semibold text-gray-800 mb-4">
+        Bending Strength Lookup (Pb)
+      </h3>
+
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Equivalent slenderness (λLT) :
+          </label>
+          <input
+            type="number"
+            value={lambda}
+            onChange={(e) => setLambda(e.target.value)}
+            className="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            design strength (py):
+          </label>
+          <input
+            type="number"
+            value={py}
+            onChange={(e) => setPy(e.target.value)}
+            className="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <button
+          onClick={lookup}
+          className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Lookup
+        </button>
+
+        <p className="text-sm text-gray-700 mt-4">
+          Pb: {Pb ? `${Pb}` : "Enter values to lookup."}
+        </p>
+      </div>
     </div>
   );
 };
