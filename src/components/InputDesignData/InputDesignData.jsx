@@ -47,7 +47,7 @@ const InputDesignData = () => {
         </label>
 
         <label>
-          Length L (mm):
+          Length L (m):
           <input
             type="number"
             name="L"
