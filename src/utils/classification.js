@@ -42,8 +42,17 @@ export function classifyFlange(bT, Tflange, epsilon) {
 
 // Calculate r1 = Fc / (d * tWeb * py)
 export function calculateR1(Fc, d, tWeb, py) {
-  return (1000 * Fc) / (d * tWeb * py);
+  let r1 = (1000 * Fc) / (d * tWeb * py);
+
+  if (r1 <= -1) {
+    r1 = -0.9999;  // or some value just greater than -1
+  } else if (r1 > 1) {
+    r1 = 1;
+  }
+  
+  return r1;
 }
+
 
 // Calculate r2 = Fc / (A * py)
 export function calculateR2(Fc, A, py) {

@@ -10,9 +10,11 @@ export const DesignProvider = ({ children }) => {
   const [bucklingResults, setBucklingResults] = useState(null);
   const [pcLookupResult, setPcLookupResult] = useState(null);
   const [PbLookupResult, setPbLookupResult] = useState(null);
-  const [compressiveData, setCompressiveData] = useState({}); // <-- new
 
-  // Load compressive strength JSON
+  const [compressiveData, setCompressiveData] = useState({});
+  const [bendingData, setBendingData] = useState({});
+
+  // Load compressive strength JSON (for Pc)
   useEffect(() => {
     fetch("/src/data/compressive_strength_table.json")
       .then((res) => res.json())
@@ -20,7 +22,15 @@ export const DesignProvider = ({ children }) => {
       .catch((err) => console.error("Failed to load compressive strength data:", err));
   }, []);
 
-  // Core logic to look up pc based on λ and py
+  // Load bending strength JSON (for Pb)
+  useEffect(() => {
+    fetch("/src/data/bending_strength_table.json")
+      .then((res) => res.json())
+      .then((json) => setBendingData(json))
+      .catch((err) => console.error("Failed to load bending strength data:", err));
+  }, []);
+
+  // Lookup Pc from lambda and py
   const lookupPc = (lambda, py) => {
     if (!compressiveData || Object.keys(compressiveData).length === 0) return null;
 
@@ -55,6 +65,53 @@ export const DesignProvider = ({ children }) => {
     }
   };
 
+  // Lookup Pb from lambdaLT and py
+  const lookupPb = (lambda, py) => {
+  if (!bendingData || typeof lambda !== 'number' || typeof py !== 'number') return null;
+
+  const pyKey = py.toString();
+  const lambdaKeys = Object.keys(bendingData).map(Number).sort((a, b) => a - b);
+
+  if (lambdaKeys.length === 0) return null;
+
+  // ✅ Clamp lambda to min if it's too small
+  let lambdaNum = Math.max(lambda, lambdaKeys[0]);
+
+  let lower = null, upper = null;
+
+  // ✅ Handle exact match with max key
+  if (lambdaNum === lambdaKeys[lambdaKeys.length - 1]) {
+    lower = upper = lambdaNum;
+  } else {
+    for (let i = 0; i < lambdaKeys.length - 1; i++) {
+      if (lambdaNum === lambdaKeys[i]) {
+        lower = upper = lambdaKeys[i];
+        break;
+      }
+      if (lambdaNum > lambdaKeys[i] && lambdaNum < lambdaKeys[i + 1]) {
+        lower = lambdaKeys[i];
+        upper = lambdaKeys[i + 1];
+        break;
+      }
+    }
+  }
+
+  if (lower === null || !bendingData[lower]?.[pyKey] || !bendingData[upper]?.[pyKey]) {
+    console.warn('Pb lookup failed for λ =', lambdaNum, 'and py =', pyKey);
+    return null;
+  }
+
+  if (lower === upper) {
+    return parseFloat(bendingData[lower][pyKey]);
+  } else {
+    const PbLower = parseFloat(bendingData[lower][pyKey]);
+    const PbUpper = parseFloat(bendingData[upper][pyKey]);
+    const interpolated = PbLower + ((lambdaNum - lower) / (upper - lower)) * (PbUpper - PbLower);
+    return parseFloat(interpolated.toFixed(2));
+  }
+};
+
+
   return (
     <DesignContext.Provider
       value={{
@@ -72,7 +129,8 @@ export const DesignProvider = ({ children }) => {
         setPcLookupResult,
         PbLookupResult,
         setPbLookupResult,
-        lookupPc, // <-- Expose the new function
+        lookupPc, // ✅
+        lookupPb, // ✅
       }}
     >
       {children}

@@ -90,7 +90,7 @@ export function calculateCompressionResistance(sectionClass, pc, A) {
   const Pc = pc * A / 10;
   return Pc;
 }
-  return ('Calculations involving slender sections are NOT handled by this application! Please use a more advanced structural analysis tool.');
+  return ('Calculations involving slender sections are not handled by this application! Please use a more advanced structural analysis tool.');
 }
 
 //Calculate Equivalent slenderness (lateral-torsional buckling) λLT (lambda) = 0.5*L / ry

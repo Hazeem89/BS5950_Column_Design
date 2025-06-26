@@ -36,8 +36,8 @@ const LocalCapacityCheck = () => {
 
     const sectionClass = classificationResults?.flangeClass || 'Plastic'; // fallback if not defined
     const py = calculatePy(Number(grade), Number(Tflange));
-    const Mcx = calculateMcx(py, Number(Sx), Number(Zx), sectionClass);
-    const Mcy = calculateMcy(py, Number(Sy), Number(Zy), sectionClass);
+    const Mcx = calculateMcx(sectionClass, py, Number(Sx), Number(Zx));
+    const Mcy = calculateMcy(sectionClass, py, Number(Sy), Number(Zy));
     const capacity = (Fc * 10 / (py * A)) + (Mx / Mcx) + (My / Mcy); // Cross-section capacity BS5950:2000 Clause 4.8.3.2
 
     setCapacityResults({
