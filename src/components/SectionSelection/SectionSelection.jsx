@@ -35,6 +35,11 @@ const SectionSelection = () => {
           <p><strong>Depth:</strong> {selectedSection.d} mm</p>
           <p><strong>Web Thickness:</strong> {selectedSection.tWeb} mm</p>
           <p><strong>Flange Thickness:</strong> {selectedSection.Tflange} mm</p>
+          <p><strong>Area:</strong> {selectedSection.A} mm²</p>
+          <p><strong>Major Axis Section Modulus (Sx):</strong> {selectedSection.Sx} mm³</p>
+          <p><strong>Minor Axis Section Modulus (Sy):</strong> {selectedSection.Sy} mm³</p>
+          <p><strong>Major Axis Plastic Section Modulus (Zx):</strong> {selectedSection.Zx} mm³</p>
+          <p><strong>Minor Axis Plastic Section Modulus (Zy):</strong> {selectedSection.Zy} mm³</p>
           {/* Add more preview fields if needed */}
         </div>
       )}

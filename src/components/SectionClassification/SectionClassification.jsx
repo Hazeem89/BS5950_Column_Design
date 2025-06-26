@@ -57,6 +57,7 @@ const SectionClassification = () => {
 
     // Step 7: Classify section (based on flange and web classification)
     const sectionClass = classifySection(flangeClass, webClass);
+  
 
     // Save results in context
     setClassificationResults({

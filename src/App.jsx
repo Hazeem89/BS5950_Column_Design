@@ -3,6 +3,7 @@ import InputDesignData from './components/InputDesignData/InputDesignData';
 import SectionSelection from './components/SectionSelection/SectionSelection';
 import SectionClassification from './components/SectionClassification/SectionClassification';
 import PcLookup from './components/PcLookup/PcLookup';
+import LocalCapacityCheck from './components/LocalCapacityCheck/LocalCapacityCheck';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <SectionSelection />
         <SectionClassification />
         <PcLookup />
+        <LocalCapacityCheck />
       </main>
     </DesignProvider>
   );

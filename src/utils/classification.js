@@ -47,7 +47,7 @@ export function calculateR1(Fc, d, tWeb, py) {
 
 // Calculate r2 = Fc / (A * py)
 export function calculateR2(Fc, A, py) {
-  return (1000 * Fc) / (A * py);
+  return (10 * Fc) / (A * py);
 }
 
 // Classify web based on dt, r1, r2, and epsilon
