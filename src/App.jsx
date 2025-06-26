@@ -1,7 +1,6 @@
 import { DesignProvider } from './context/DesignContext';
 import InputDesignData from './components/InputDesignData/InputDesignData';
 import SectionSelection from './components/SectionSelection/SectionSelection';
-import SectionClassification from './components/SectionClassification/SectionClassification';
 import PcLookup from './components/PcLookup/PcLookup';
 
 const App = () => {
@@ -11,7 +10,6 @@ const App = () => {
         <h1 className="text-2xl font-bold">BS5950 Column Design App</h1>
         <InputDesignData />
         <SectionSelection />
-        <SectionClassification/>
         <PcLookup />
       </main>
     </DesignProvider>
