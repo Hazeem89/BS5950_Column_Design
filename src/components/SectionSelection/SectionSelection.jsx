@@ -90,7 +90,7 @@ const SectionSelection = () => {
             </p>
           </div>
           <div className="space-y-4 text-sm text-gray-700  p-4 rounded-md">
-            <div className="relative rounded-2xl" >
+            <div className="relative rounded-2xl min-w-[300px] sm:min-w-0 w-full" >
               <img
                 src={SectionImage}
                 alt="Section"

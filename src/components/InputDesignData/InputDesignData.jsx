@@ -14,9 +14,9 @@ const InputDesignData = () => {
       <legend className="text-2xl font-semibold text-gray-200 bg-[#2691d4ef] p-2 rounded-lg shadow-md mb-4">
         Input Design Data
       </legend>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div className="flex flex-col">
-          <label className="text-sm font-medium text-gray-700">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
+        <div className="flex flex-col w-full">
+          <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
             Axial Force Fc (kN):
           </label>
           <input
@@ -28,8 +28,8 @@ const InputDesignData = () => {
           />
         </div>
 
-        <div className="flex flex-col">
-          <label className="text-sm font-medium text-gray-700">
+        <div className="flex flex-col w-full">
+          <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
             Moment Mx (kNm):
           </label>
           <input
@@ -41,8 +41,8 @@ const InputDesignData = () => {
           />
         </div>
 
-        <div className="flex flex-col">
-          <label className="text-sm font-medium text-gray-700">
+        <div className="flex flex-col w-full">
+          <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
             Moment My (kNm):
           </label>
           <input
@@ -54,8 +54,8 @@ const InputDesignData = () => {
           />
         </div>
 
-        <div className="flex flex-col">
-          <label className="text-sm font-medium text-gray-700">
+        <div className="flex flex-col w-full">
+          <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
             Length L (m):
           </label>
           <input
@@ -67,8 +67,8 @@ const InputDesignData = () => {
           />
         </div>
 
-        <div className="flex flex-col col-span-2">
-          <label className="text-sm font-medium text-gray-700">
+        <div className="flex flex-col w-full">
+          <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
             Steel Grade:
           </label>
           <select
