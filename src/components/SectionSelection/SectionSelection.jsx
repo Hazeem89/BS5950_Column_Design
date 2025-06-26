@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDesign } from "../../context/DesignContext";
 import ucSections from "../../data/uc_sections.json";
+import SectionImage from "../../assets/Section.png";
 
 const SectionSelection = () => {
   const { selectedSection, setSelectedSection } = useDesign();
@@ -14,8 +15,8 @@ const SectionSelection = () => {
   };
 
   return (
-    <fieldset className="p-6 max-w-6xl mx-auto border border-gray-200 rounded-lg mb-6 shadow-sm">
-      <legend className="text-2xl font-semibold text-gray-800 mb-4">
+    <fieldset className="p-6 max-w-6xl mx-auto bg-[#fffac0] border border-gray-200 rounded-lg mb-6 shadow-md">
+      <legend className="text-2xl font-semibold text-gray-200 mb-4 bg-[#2691d4ef] p-2 rounded-lg shadow-md">
         Section Selection
       </legend>
 
@@ -37,45 +38,83 @@ const SectionSelection = () => {
       </select>
 
       {selectedSection && (
-        <div className="mt-6 space-y-4 text-sm text-gray-700">
-          <p>
-            <span className="text-sm font-medium text-gray-700 mr-2">Depth:</span> {selectedSection.d} mm
-          </p>
-          <p>
-            <span className="text-sm font-medium text-gray-700 mr-2">Web Thickness:</span>{" "}
-            {selectedSection.tWeb} mm
-          </p>
-          <p>
-            <span className="text-sm font-medium text-gray-700 mr-2">Flange Thickness:</span>{" "}
-            {selectedSection.Tflange} mm
-          </p>
-          <p>
-            <span className="text-sm font-medium text-gray-700 mr-2">Area:</span> {selectedSection.A} mm²
-          </p>
-          <p>
-            <span className="text-sm font-medium text-gray-700 mr-2">
-              Major Axis Section Modulus (Sx):
-            </span>{" "}
-            {selectedSection.Sx} mm³
-          </p>
-          <p>
-            <span className="text-sm font-medium text-gray-700 mr-2">
-              Minor Axis Section Modulus (Sy):
-            </span>{" "}
-            {selectedSection.Sy} mm³
-          </p>
-          <p>
-            <span className="text-sm font-medium text-gray-700 mr-2">
-              Major Axis Plastic Section Modulus (Zx):
-            </span>{" "}
-            {selectedSection.Zx} mm³
-          </p>
-          <p>
-            <span className="text-sm font-medium text-gray-700 mr-2">
-              Minor Axis Plastic Section Modulus (Zy):
-            </span>{" "}
-            {selectedSection.Zy} mm³
-          </p>
+        <div className="mt-1 text-sm text-gray-700  p-4 rounded-md flex flex-col md:flex-row justify-between gap-4">
+          <div className="space-y-4 text-sm text-gray-700  p-4 rounded-md">
+            <p>
+              <span className="text-sm font-medium text-gray-700 mr-2">
+                Depth between fillets (d):
+              </span>{" "}
+              {selectedSection.d} mm
+            </p>
+            <p>
+              <span className="text-sm font-medium text-gray-700 mr-2">
+                Web Thickness (t):
+              </span>{" "}
+              {selectedSection.tWeb} mm
+            </p>
+            <p>
+              <span className="text-sm font-medium text-gray-700 mr-2">
+                Flange Thickness (T):
+              </span>{" "}
+              {selectedSection.Tflange} mm
+            </p>
+            <p>
+              <span className="text-sm font-medium text-gray-700 mr-2">
+                Area of section (A):
+              </span>{" "}
+              {selectedSection.A} cm²
+            </p>
+            <p>
+              <span className="text-sm font-medium text-gray-700 mr-2">
+                Plastic modulus major axis (Sx):
+              </span>{" "}
+              {selectedSection.Sx} cm³
+            </p>
+            <p>
+              <span className="text-sm font-medium text-gray-700 mr-2">
+                Plastic modulus minor axis (Sy):
+              </span>{" "}
+              {selectedSection.Sy} cm³
+            </p>
+            <p>
+              <span className="text-sm font-medium text-gray-700 mr-2">
+                Elastic modulus major axis (Zx):
+              </span>{" "}
+              {selectedSection.Zx} cm³
+            </p>
+            <p>
+              <span className="text-sm font-medium text-gray-700 mr-2">
+                Elastic modulus minor axis (Zy):
+              </span>{" "}
+              {selectedSection.Zy} cm³
+            </p>
+          </div>
+          <div className="space-y-4 text-sm text-gray-700  p-4 rounded-md">
+            <div className="relative rounded-2xl" >
+              <img
+                src={SectionImage}
+                alt="Section"
+                className="w-[300px] h-auto rounded-md"
+              />
+
+              {/* Overlay text spans */}
+              <span className="absolute top-7 left-26 bg-[#fffac0] px-1 text-s font-medium">
+                B= {selectedSection.B}
+              </span>
+              <span className="absolute top-30 leftt-4 bg-[#fffac0] px-1 text-s font-medium">
+                D= {selectedSection.Dtotal}
+              </span>
+              <span className="absolute top-25 left-40 bg-[#fffac0] px-1 text-s font-medium">
+                t= {selectedSection.tWeb}
+              </span>
+              <span className="absolute top-30 left-55 bg-[#fffac0] px-1 text-s font-medium">
+                d= {selectedSection.d}
+              </span>
+              <span className="absolute top-38 left-13 bg-[#fffac0] px-1 text-s font-medium">
+                T= {selectedSection.Tflange}
+              </span>
+            </div>
+          </div>
         </div>
       )}
     </fieldset>

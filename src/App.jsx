@@ -11,7 +11,7 @@ const App = () => {
   return (
     <DesignProvider>
       <main className="max-w-4xl mx-auto p-6 space-y-6">
-        <h1 className="text-2xl font-bold">BS5950 Column Design</h1>
+        <h1 className="text-2xl font-bold">BS5950_UC Section Design</h1>
         <InputDesignData />
         <SectionSelection />
         <SectionClassification />

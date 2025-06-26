@@ -10,8 +10,8 @@ const InputDesignData = () => {
   };
 
   return (
-    <fieldset className="p-6 max-w-6xl mx-auto border border-gray-200 rounded-lg mb-6 shadow-sm">
-      <legend className="text-2xl font-semibold text-gray-800 mb-4">
+    <fieldset className="p-6 max-w-6xl mx-auto bg-[#fffac0] border border-gray-200 rounded-lg mb-6 shadow-md">
+      <legend className="text-2xl font-semibold text-gray-200 bg-[#2691d4ef] p-2 rounded-lg shadow-md mb-4">
         Input Design Data
       </legend>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

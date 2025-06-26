@@ -94,9 +94,9 @@ const OverallBucklingCheck = () => {
   ]);
 
   return (
-    <fieldset className="p-6 max-w-6xl mx-auto border border-gray-200 rounded-lg mb-6 shadow-sm">
-      <legend className="text-2xl font-semibold text-gray-800 mb-4">
-        Overall Buckling Check Results
+    <fieldset className="p-6 max-w-6xl mx-auto bg-[#fffac0] border border-gray-200 rounded-lg mb-6 shadow-sm">
+      <legend className="text-2xl font-semibold text-gray-200 mb-4 bg-[#2691d4ef] p-2 rounded-lg shadow-md">
+        Overall Buckling Check
       </legend>
       {bucklingResults ? (
         <div className="space-y-4 text-gray-700">

@@ -73,8 +73,8 @@ const SectionClassification = () => {
   }, [selectedSection, Fc, grade, setClassificationResults]);
 
   return (
-    <fieldset className="p-6 max-w-6xl mx-auto border border-gray-200 rounded-lg mb-6 shadow-sm">
-      <legend className="text-2xl font-semibold text-gray-800 mb-4">
+    <fieldset className="p-6 max-w-6xl mx-auto bg-[#fffac0] border border-gray-200 rounded-lg mb-6 shadow-sm">
+      <legend className="text-2xl font-semibold text-gray-200 mb-4 bg-[#2691d4ef] p-2 rounded-lg shadow-md">
         Section Classification
       </legend>
 
@@ -85,7 +85,7 @@ const SectionClassification = () => {
             <span>{classificationResults.py.toFixed(2)}</span>
           </p>
           <p className="flex justify-between">
-            <span className="text-sm font-medium text-gray-700">Epsilon:</span>
+            <span className="text-sm font-medium text-gray-700">Epsilon (ε):</span>
             <span>{classificationResults.epsilon.toFixed(3)}</span>
           </p>
           <p className="flex justify-between">
