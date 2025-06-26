@@ -154,18 +154,17 @@ const OverallBucklingCheck = () => {
           {/* Conditional message */}
           {bucklingResults.OverallBucklingCheck <= 1 ? (
             <p className="text-green-600 font-medium">
-              Overall buckling check is acceptable.
+              Overall buckling check {"<"} 1 and section is OK!
             </p>
           ) : (
             <p className="text-red-600 font-medium">
-              Warning: Overall buckling check exceeds 1. Please review your
-              inputs.
+              Not OK! Overall buckling check {">"} 1. Please review your inputs and/or select another section.
             </p>
           )}
         </div>
       ) : (
         <p className="text-red-600 font-medium">
-          No results available. Please check your inputs or data.
+          Please select a section and enter valid design inputs.
         </p>
       )}
     </fieldset>

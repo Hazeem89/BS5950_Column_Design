@@ -92,17 +92,17 @@ const LocalCapacityCheck = () => {
           {/* Conditional message */}
           {capacityResults.capacity <= 1 ? (
             <p className="text-green-600 font-medium">
-              Capacity ratio is acceptable.
+              Capacity ratio {"<"} 1 and section is OK!
             </p>
           ) : (
             <p className="text-red-600 font-medium">
-              Warning: Capacity ratio exceeds 1. Please review your inputs.
+              Not OK! Capacity ratio {">"} 1. Please review your inputs and/or select another section.
             </p>
           )}
         </div>
       ) : (
         <p className="text-red-600 font-medium">
-          Please ensure all inputs are valid.
+          Please select a section and enter valid design inputs.
         </p>
       )}
     </fieldset>

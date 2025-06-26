@@ -17,7 +17,7 @@ const InputDesignData = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
         <div className="flex flex-col w-full">
           <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
-            Axial Force Fc (kN):
+            Axial Force Fc (kN)*:
           </label>
           <input
             type="number"
@@ -30,7 +30,7 @@ const InputDesignData = () => {
 
         <div className="flex flex-col w-full">
           <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
-            Moment Mx (kNm):
+            Moment Mx (kNm)*:
           </label>
           <input
             type="number"
@@ -43,7 +43,7 @@ const InputDesignData = () => {
 
         <div className="flex flex-col w-full">
           <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
-            Moment My (kNm):
+            Moment My (kNm)*:
           </label>
           <input
             type="number"
@@ -56,7 +56,7 @@ const InputDesignData = () => {
 
         <div className="flex flex-col w-full">
           <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
-            Length L (m):
+            Length L (m)*:
           </label>
           <input
             type="number"
@@ -69,7 +69,7 @@ const InputDesignData = () => {
 
         <div className="flex flex-col w-full">
           <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
-            Steel Grade:
+            Steel Grade*:
           </label>
           <select
             name="grade"
