@@ -4,6 +4,12 @@ This is a web-based application built using **React + Vite** that allows enginee
 
 ---
 
+## 📸 Screenshot
+
+![BS5950 UC Section Design](screenshot.png)
+
+---
+
 ## 🔍 Purpose
 
 This tool helps assess structural UC members for:
